@@ -21,6 +21,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgbModule.forRoot(),
     HttpClientInMemoryWebApiModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }

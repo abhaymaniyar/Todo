@@ -1,15 +1,15 @@
-<div>
+<div class="list">
   <input type="text" placeholder="Enter task" [(ngModel)] = "newItem" (keyup)="$event.keyCode == 13 ? addNewItem() : null" (blur)="addNewItem()">
-  <div *ngFor = "let item of items">
+  <div *ngFor = "let item of items" class="list-item">
     <input type="checkbox" (click)="markCompleted(item)" [checked] = "item.completed"> 
     
     <span *ngIf="item.completed; else notCompleted">
       <del> {{item.title}} </del>
     </span>
     
-    <button (click)="confirmDelete(item)"> del </button>
+    <button (click)="confirmDelete(item)" class="button"> Del </button>
 
-    <button class = "btn btn-md btn-outline-primary" (click)="edit($event, item)" [disabled]="item.completed"> {{editLabel}} </button>
+    <button (click)="edit($event, item)" [disabled]="item.completed" class="button"> {{editLabel}} </button>
     
     <ng-template #notCompleted>
       {{item.title}} 
