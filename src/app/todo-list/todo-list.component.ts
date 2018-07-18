@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { TasksService } from '../tasks.service';
 import { Item } from '../item';
-import { ITEMS } from '../mock-items';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
+
 export class TodoListComponent implements OnInit {
-  public items = ITEMS;
+  public items : Item[];
   public newItem = "";
-  constructor() { }
+  public editLabel = "Edit";
+  closeResult: string;
+  constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
+    this.getItems();
   }
 
   markCompleted(item) {
@@ -41,9 +46,20 @@ export class TodoListComponent implements OnInit {
     if(this.newItem === '') {
       return;
     }
-    const item = {title: this.newItem, completed: false};
-    // this.items.unshift(item);
-    ITEMS.unshift(item);
+    const item = {title: this.newItem, completed: false, details: ""};
+    this.items.unshift(item);
     this.newItem = "";
   }
-}
+
+  getItems(): void {
+    this.tasksService.getTasks().subscribe(items => this.items = items);
+  }
+
+  edit(event): void {
+    if(event.target.innerHTML != "Update") {
+      event.target.innerHTML = "Update";
+    } else {
+      event.target.innerHTML = "Edit";
+    }
+  }
+ }
