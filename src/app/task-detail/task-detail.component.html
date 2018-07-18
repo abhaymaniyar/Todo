@@ -1,3 +1,11 @@
-<p>
-  task-detail works!
-</p>
+<div *ngIf="item">
+
+  <h2>{{item.title | uppercase}} Details</h2>
+  <div><span>Completed: </span>{{item.completed}}</div>
+  <div>
+    <label>Details:
+      <input [(ngModel)]="item.details" placeholder="details"/>
+    </label>
+  </div>
+
+</div>

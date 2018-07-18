@@ -13,6 +13,7 @@ export class TodoListComponent implements OnInit {
   public items : Item[];
   public newItem = "";
   public editLabel = "Edit";
+  public item: Item;
   closeResult: string;
   constructor(private tasksService: TasksService) { }
 
@@ -55,11 +56,13 @@ export class TodoListComponent implements OnInit {
     this.tasksService.getTasks().subscribe(items => this.items = items);
   }
 
-  edit(event): void {
+  edit(event, item): void {
     if(event.target.innerHTML != "Update") {
       event.target.innerHTML = "Update";
+      this.item = item;
     } else {
       event.target.innerHTML = "Edit";
+      this.item = null;
     }
   }
 }

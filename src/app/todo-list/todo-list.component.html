@@ -9,7 +9,7 @@
     
     <button (click)="confirmDelete(item)"> del </button>
 
-    <button class = "btn btn-md btn-outline-primary" (click)="edit($event)" [disabled]="item.completed"> {{editLabel}} </button>
+    <button class = "btn btn-md btn-outline-primary" (click)="edit($event, item)" [disabled]="item.completed"> {{editLabel}} </button>
     
     <ng-template #notCompleted>
       {{item.title}} 
@@ -18,3 +18,5 @@
     
   </div>
 </div>
+
+<app-task-detail [item]="item"></app-task-detail>
