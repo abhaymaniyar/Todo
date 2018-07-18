@@ -62,4 +62,4 @@ export class TodoListComponent implements OnInit {
       event.target.innerHTML = "Edit";
     }
   }
- }
+}
