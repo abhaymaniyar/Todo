@@ -61,6 +61,7 @@ export class TodoListComponent implements OnInit {
       event.target.innerHTML = "Update";
       this.item = item;
     } else {
+      this.tasksService.updateTask(this.item);
       event.target.innerHTML = "Edit";
       this.item = null;
     }

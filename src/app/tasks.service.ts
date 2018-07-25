@@ -30,11 +30,22 @@ export class TasksService {
     console.log(`TasksService: ${message}`);
   }
 
-  getHero(id: number) : Observable<Item> {
+  getItem(id: number) : Observable<Item> {
     const url = `${this.tasksUrl}/${id}`;
     return this.http.get<Item>(url).pipe(
       tap(_ => this.log(`fetched item id=${id}`)),
-      catchError(this.handleError<Item>(`getHero id = ${id}`))
+      catchError(this.handleError<Item>(`getItem id = ${id}`))
+    );
+  }
+
+  /** PUT: update the item on the server */
+  updateTask (item: Item): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.put(this.tasksUrl, item, httpOptions).pipe(
+      tap(_ => this.log(`updated item title =${item.title}`)),
+      catchError(this.handleError<any>('updateTask'))
     );
   }
 }
